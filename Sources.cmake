@@ -27,5 +27,6 @@ include_directories (${catch}/single_include)
 set (sources
     src/wrap-hwlib.cpp
     src/libc-stub.cpp
+    src/base64.cpp
     src/main.cpp
 )
