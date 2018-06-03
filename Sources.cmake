@@ -1,5 +1,7 @@
 # Libraries:
 
+add_compile_options(-fexceptions)
+
 link_libraries (gcc)
 
 set (hwlib ${build_environment}/libraries/hwlib)
@@ -11,5 +13,6 @@ include_directories (${catch}/single_include)
 # Source Files:
 
 set (sources
+    src/sock_exception_handler.cpp
     # place your .cpp's here "src/some_file.cpp"
 )
