@@ -14,5 +14,6 @@ include_directories (${catch}/single_include)
 
 set (sources
     src/sock_exception_handler.cpp
+    src/video_codec.cpp
     # place your .cpp's here "src/some_file.cpp"
 )

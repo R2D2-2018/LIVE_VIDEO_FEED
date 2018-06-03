@@ -5,6 +5,8 @@
  * @license See LICENSE
  */
 
+#ifndef SOCK_EXCEPTION_HANDLER
+#define SOCK_EXCEPTION_HANDLER
 #include <stdexcept>
 
 namespace LiveVideoFeed {
@@ -17,9 +19,9 @@ class SockExceptionHandler : public std::exception {
      * @brief Create the socket exception handler object.
      *
      * @details
-     * This
+     * This object throws an exception with a custom string.
      *
-     * @param[in]
+     * @param[in] errorStr String that while be displayed.
      */
     SockExceptionHandler(const std::string &errorStr) throw();
 
@@ -34,3 +36,5 @@ class SockExceptionHandler : public std::exception {
     const char *what() const throw();
 };
 } // namespace LiveVideoFeed
+
+#endif // SOCK_EXCEPTION_HANDLER
