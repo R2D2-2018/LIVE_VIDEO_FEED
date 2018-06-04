@@ -8,7 +8,7 @@ int main() {
     LiveVideoFeed::videoCodec a("H264");
     std::cout << "code: " << a.getCode() << std::endl;
 
-    throw LiveVideoFeed::SockExceptionHandler("NEE");
+    throw LiveVideoFeed::SockExceptionHandler("TEST ERROR");
 
     return 0;
 }
