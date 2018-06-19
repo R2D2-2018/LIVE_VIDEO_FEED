@@ -1,7 +1,7 @@
 /**
  * @file    socket.hpp
  * @brief   Socket class declaration. This class aims for cross-platform functionality.
- * @author  Nick Swaerdens
+ * @author  R2D2 Team
  * @license See LICENSE
  */
 
@@ -25,6 +25,13 @@ class Socket {
     int sockfd;
 
   public:
+    Socket();
+
+    int Send(const char *msg, size_t size);
+
+    int Receive(char *msg, size_t max_size);
+
+    void close();
 };
 
 } // namespace LiveVideoFeed
