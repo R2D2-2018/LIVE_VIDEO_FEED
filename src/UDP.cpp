@@ -3,7 +3,7 @@
 namespace LiveVideoFeed {
 
 // UDP Superclass
-UDP::UDP(const std::string &address, const int port) : address(address), port(port) {
+UDP::UDP(const std::string &address, const int port) : address{address}, port{port} {
 }
 
 int UDP::getPort() const {
