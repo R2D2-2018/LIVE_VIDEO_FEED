@@ -1,3 +1,10 @@
+/**
+ * @file      UDP.cpp
+ * @brief     Implementation of UDP classes.
+ * @author    Laurens van der Sluis
+ * @license   See LICENSE
+ */
+
 #include "UDP.hpp"
 
 namespace LiveVideoFeed {

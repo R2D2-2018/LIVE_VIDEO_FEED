@@ -27,10 +27,32 @@ class Socket {
   public:
     Socket();
 
-    void Send(const char *msg, size_t size);
+    /**
+     * @brief Send data.
+     * [BLANK]
+     * Call this function with a char array and the size of the array to send it over UDP.
+     * The implementation of this function depends on the platform it was compiled on.
+     * [BLANK]
+     * @param[in]     *data    The array to send.
+     * @param[in]     size    The size of the array.
+     */
+    void Send(const char *data, size_t size);
 
-    void Receive(char *msg, size_t max_size);
+    /**
+     * @brief Receive data.
+     * [BLANK]
+     * Call this function to receive incomming data. Supply this function with an char array to store the incomming data.
+     * Also specify the maximum length of the array.
+     * The implementation of this function depends on the platform it was compiled on.
+     * [BLANK]
+     * @param[in]     *data    The array to store incomming data.
+     * @param[in]     size    The size of the array.
+     */
+    void Receive(char *data, size_t max_size);
 
+    /**
+     * @brief Close the connection
+     */
     void close();
 };
 
