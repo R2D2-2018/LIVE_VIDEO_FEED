@@ -12,12 +12,27 @@ namespace LiveVideoFeed {
 Socket::Socket() {
 }
 
-void Socket::Send(const char *data, size_t size) {
+void Socket::send(const char *data, size_t size) {
+#ifdef __LINUX__
+// Code for linux implementation
+#elif defined __WINDOWS__
+// Code for windows implementation
+#endif
 }
 
-void Socket::Receive(char *data, size_t max_size) {
+void Socket::receive(char *data, size_t max_size) {
+#ifdef __LINUX__
+
+#elif defined __WINDOWS__
+
+#endif
 }
 
 void Socket::close() {
+#ifdef __LINUX__
+// Code for linux implementation
+#elif defined __WINDOWS__
+// Code for windows implementation
+#endif
 }
 } // namespace LiveVideoFeed

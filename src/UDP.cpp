@@ -29,6 +29,7 @@ UDPClient::UDPClient(const std::string &address, const int port) : UDP(address, 
 }
 
 void UDPClient::send(const char *data, size_t size) {
+    UDPsocket.send(data, size);
 }
 
 // SERVER
@@ -36,5 +37,6 @@ UDPServer::UDPServer(const std::string &address, const int port) : UDP(address, 
 }
 
 void UDPServer::receive(char *data, size_t max_size) {
+    UDPsocket.receive(data, max_size);
 }
 } // namespace LiveVideoFeed

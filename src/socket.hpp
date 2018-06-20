@@ -36,7 +36,7 @@ class Socket {
      * @param[in]     *data    The array to send.
      * @param[in]     size    The size of the array.
      */
-    void Send(const char *data, size_t size);
+    void send(const char *data, size_t size);
 
     /**
      * @brief Receive data.
@@ -48,7 +48,7 @@ class Socket {
      * @param[in]     *data    The array to store incomming data.
      * @param[in]     size    The size of the array.
      */
-    void Receive(char *data, size_t max_size);
+    void receive(char *data, size_t max_size);
 
     /**
      * @brief Close the connection
