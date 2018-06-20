@@ -2,30 +2,37 @@
 #define UDP_HH
 
 #include "socket.hpp"
-#include <netdb.h>
 #include <stdexcept>
-#include <sys/socket.h>
-#include <sys/types.h>
 
 namespace LiveVideoFeed {
-class UDPClient : public Socket {
-  private:
+class UDP {
+  protected:
     Socket UDPsocket;
-    std::string addr;
+    std::string address;
     int port;
 
   public:
-    UDPClient(const std::string &addr, int port);
+    UDP(const std::string &address, const int port);
+
+    int getPort() const;
+
+    std::string getAddress() const;
+
+    void close();
 };
 
-class UDPServer : public Socket {
-  private:
-    Socket UDPsocket;
-    std::string addr;
-    int port;
-
+class UDPClient : public UDP {
   public:
-    UDPServer(const std::string &addr, int port);
+    UDPClient(const std::string &address, int port);
+
+    void send(const char *data, size_t size);
+};
+
+class UDPServer : public UDP {
+  public:
+    UDPServer(const std::string &address, int port);
+
+    void receive(char *data, size_t max_size);
 };
 
 } // namespace LiveVideoFeed

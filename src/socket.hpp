@@ -1,7 +1,7 @@
 /**
  * @file    socket.hpp
  * @brief   Socket class declaration. This class aims for cross-platform functionality.
- * @author  R2D2 Team
+ * @author  Laurens van der Sluis
  * @license See LICENSE
  */
 
@@ -27,9 +27,9 @@ class Socket {
   public:
     Socket();
 
-    int Send(const char *msg, size_t size);
+    void Send(const char *msg, size_t size);
 
-    int Receive(char *msg, size_t max_size);
+    void Receive(char *msg, size_t max_size);
 
     void close();
 };
