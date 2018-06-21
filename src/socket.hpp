@@ -8,10 +8,14 @@
 #ifndef SOCKET
 #define SOCKET
 #include "sock_exception_handler.hpp"
+#include <cstring>
+#include <iostream>
 
 // Socket includes for different OS.
 #if defined(__linux) || defined(__linux__) || defined(linux)
 #define __LINUX__
+#include <arpa/inet.h>
+#include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 
@@ -24,12 +28,17 @@ namespace LiveVideoFeed {
 class Socket {
   private:
     int domain, type, protocol;
+    struct sockaddr_in socketSettings;
 
   protected:
     int sockfd;
 
   public:
     Socket(const int domain, const int type, const int protocol);
+
+    void attach(int port);
+
+    void attach(const std::string &address, int port);
 
     /**
      * @brief Send data.

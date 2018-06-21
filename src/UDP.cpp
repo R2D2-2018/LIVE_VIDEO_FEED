@@ -10,15 +10,20 @@
 namespace LiveVideoFeed {
 
 // UDP Superclass
-UDP::UDP(const std::string &address, const int port) : UDPsocket{Socket(AF_INET, SOCK_DGRAM, 0)}, address{address}, port{port} {
+UDP::UDP(const int port) : UDPsocket{Socket(AF_INET, SOCK_DGRAM, 0)}, port{port} {
+    UDPsocket.attach(port);
+}
+
+UDP::UDP(const std::string address, const int port) : UDPsocket{Socket(AF_INET, SOCK_DGRAM, 0)}, ipaddress{address}, port{port} {
+    UDPsocket.attach(address, port);
 }
 
 int UDP::getPort() const {
     return port;
 }
 
-std::string UDP::getAddress() const {
-    return address;
+std::string UDP::getAddress() {
+    return std::string(ipaddress);
 }
 
 void UDP::close() {
