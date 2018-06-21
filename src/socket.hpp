@@ -7,6 +7,7 @@
 
 #ifndef SOCKET
 #define SOCKET
+#include "sock_exception_handler.hpp"
 
 // Socket includes for different OS.
 #if defined(__linux) || defined(__linux__) || defined(linux)
@@ -21,11 +22,14 @@
 
 namespace LiveVideoFeed {
 class Socket {
+  private:
+    int domain, type, protocol;
+
   protected:
     int sockfd;
 
   public:
-    Socket();
+    Socket(const int domain, const int type, const int protocol);
 
     /**
      * @brief Send data.

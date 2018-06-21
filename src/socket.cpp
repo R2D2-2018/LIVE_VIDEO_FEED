@@ -9,7 +9,11 @@
 
 namespace LiveVideoFeed {
 
-Socket::Socket() {
+Socket::Socket(const int domain, const int type, const int protocol) : domain{domain}, type{type}, protocol{protocol} {
+    sockfd = socket(domain, type, protocol);
+    if (sockfd < 0) {
+        throw SockExceptionHandler("Failed to create socket");
+    }
 }
 
 void Socket::send(const char *data, size_t size) {
