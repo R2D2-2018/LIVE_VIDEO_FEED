@@ -37,8 +37,26 @@ class Socket {
   public:
     Socket(const int domain, const int type, const int protocol);
 
+    /**
+     * @brief Attach a port to socket.
+     * [BLANK]
+     * This function will bind the necessary properties to a socket for use as a server.
+     * Only supply this function with a port to listen on.
+     * [BLANK]
+     * @param[in]     port    The port number to connect with.
+     */
     void attach(int port);
 
+    /**
+     * @brief Attach address and port to socket.
+     * [BLANK]
+     * This function will bind the necessary properties to a socket for use as a client.
+     * The address will hold the ip address of the server to connect to.
+     * The port number will be the port that will be used to connect with.
+     * [BLANK]
+     * @param[in]     &address    A std::string ipaddress of a server to connect to.
+     * @param[in]     port    The port number to connect with.
+     */
     void attach(const std::string &address, int port);
 
     /**
