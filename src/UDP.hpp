@@ -61,7 +61,7 @@ class UDPClient : public UDP {
 
 class UDPServer : public UDP {
   public:
-    UDPServer(const std::string &address, const int &port);
+    UDPServer(const int &port);
 
     /**
      * @brief Receive data.
@@ -72,7 +72,7 @@ class UDPServer : public UDP {
      * @param[in]     *data    The array to store incomming data.
      * @param[in]     size    The size of the array.
      */
-    void receive(char *data, size_t max_size);
+    int receive(char *data, size_t max_size);
 };
 
 } // namespace LiveVideoFeed

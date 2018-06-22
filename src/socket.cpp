@@ -33,21 +33,27 @@ void Socket::attach(const std::string &address, const int &port) {
     socketSettings.sin_family = AF_INET;
     socketSettings.sin_port = htons(port);
 
-    if (bind(sockfd, (struct sockaddr *)&socketSettings, sizeof(socketSettings)) < 0) {
-        throw SockExceptionHandler("Failed to attach socket properties");
-    }
+    // if (bind(sockfd, (struct sockaddr *)&socketSettings, sizeof(socketSettings)) < 0) {
+    //    throw SockExceptionHandler("Failed to attach socket properties");
+    //}
 }
 
 void Socket::send(const char *data, size_t size) {
 #ifdef __LINUX__
-// Code for linux implementation
+    // Code for linux implementation
+    if (sendto(sockfd, data, strlen(data), 0, (struct sockaddr *)&socketSettings, sizeof(socketSettings)) < 0) {
+        throw SockExceptionHandler("Failed to send message");
+    }
+
 #elif defined __WINDOWS__
 // Code for windows implementation
 #endif
 }
 
-void Socket::receive(char *data, size_t max_size) {
+int Socket::receive(char *data, size_t max_size) {
 #ifdef __LINUX__
+    // Code for linux implementation
+    return recvfrom(sockfd, data, max_size, 0, (struct sockaddr *)&remoteSocketSettings, &remoteSocketSettingsLength);
 
 #elif defined __WINDOWS__
 
@@ -58,6 +64,7 @@ void Socket::terminate() {
 #ifdef __LINUX__
     // Code for linux implementation
     close(sockfd);
+
 #elif defined __WINDOWS__
 // Code for windows implementation
 #endif

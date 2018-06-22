@@ -39,10 +39,10 @@ void UDPClient::send(const char *data, size_t size) {
 }
 
 // SERVER
-UDPServer::UDPServer(const std::string &address, const int &port) : UDP(address, port) {
+UDPServer::UDPServer(const int &port) : UDP(port) {
 }
 
-void UDPServer::receive(char *data, size_t max_size) {
-    UDPsocket.receive(data, max_size);
+int UDPServer::receive(char *data, size_t max_size) {
+    return UDPsocket.receive(data, max_size);
 }
 } // namespace LiveVideoFeed
