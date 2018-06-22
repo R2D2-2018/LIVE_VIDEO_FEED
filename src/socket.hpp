@@ -45,7 +45,7 @@ class Socket {
      * [BLANK]
      * @param[in]     port    The port number to connect with.
      */
-    void attach(int port);
+    void attach(const int &port);
 
     /**
      * @brief Attach address and port to socket.
@@ -57,7 +57,7 @@ class Socket {
      * @param[in]     &address    A std::string ipaddress of a server to connect to.
      * @param[in]     port    The port number to connect with.
      */
-    void attach(const std::string &address, int port);
+    void attach(const std::string &address, const int &port);
 
     /**
      * @brief Send data.

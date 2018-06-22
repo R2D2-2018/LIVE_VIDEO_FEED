@@ -16,7 +16,7 @@ Socket::Socket(const int domain, const int type, const int protocol) : domain{do
     }
 }
 
-void Socket::attach(int port) {
+void Socket::attach(const int &port) {
     memset((char *)&socketSettings, 0, sizeof(socketSettings));
     socketSettings.sin_family = AF_INET;
     socketSettings.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -27,7 +27,7 @@ void Socket::attach(int port) {
     }
 }
 
-void Socket::attach(const std::string &address, int port) {
+void Socket::attach(const std::string &address, const int &port) {
     inet_pton(AF_INET, address.c_str(), &(socketSettings.sin_addr)); // Convert ip string
     memset((char *)&socketSettings, 0, sizeof(socketSettings));
     socketSettings.sin_family = AF_INET;
