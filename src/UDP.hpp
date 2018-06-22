@@ -9,17 +9,20 @@
 #define UDP_HH
 
 #include "socket.hpp"
+#include <iostream>
 #include <stdexcept>
 
 namespace LiveVideoFeed {
 class UDP {
   protected:
     Socket UDPsocket;
-    std::string address;
+    std::string ipaddress;
     int port;
 
   public:
-    UDP(const std::string &address, const int port);
+    UDP(const int &port);
+
+    UDP(std::string address, const int &port);
 
     /**
      * @brief Returns the current set port number.
@@ -43,7 +46,7 @@ class UDP {
 
 class UDPClient : public UDP {
   public:
-    UDPClient(const std::string &address, int port);
+    UDPClient(const std::string &address, const int &port);
 
     /**
      * @brief Send data.
@@ -58,7 +61,7 @@ class UDPClient : public UDP {
 
 class UDPServer : public UDP {
   public:
-    UDPServer(const std::string &address, int port);
+    UDPServer(const std::string &address, const int &port);
 
     /**
      * @brief Receive data.

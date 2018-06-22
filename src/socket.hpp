@@ -7,12 +7,18 @@
 
 #ifndef SOCKET
 #define SOCKET
+#include "sock_exception_handler.hpp"
+#include <cstring>
+#include <iostream>
 
 // Socket includes for different OS.
 #if defined(__linux) || defined(__linux__) || defined(linux)
 #define __LINUX__
+#include <arpa/inet.h>
+#include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <unistd.h>
 
 #elif defined(_WIN32) || defined(__WIN32__) || defined(WIN32) || defined(_WIN64)
 #define __WINDOWS__
@@ -21,11 +27,37 @@
 
 namespace LiveVideoFeed {
 class Socket {
+  private:
+    int domain, type, protocol;
+    struct sockaddr_in socketSettings;
+
   protected:
     int sockfd;
 
   public:
-    Socket();
+    Socket(const int domain, const int type, const int protocol);
+
+    /**
+     * @brief Attach a port to socket.
+     * [BLANK]
+     * This function will bind the necessary properties to a socket for use as a server.
+     * Only supply this function with a port to listen on.
+     * [BLANK]
+     * @param[in]     port    The port number to connect with.
+     */
+    void attach(const int &port);
+
+    /**
+     * @brief Attach address and port to socket.
+     * [BLANK]
+     * This function will bind the necessary properties to a socket for use as a client.
+     * The address will hold the ip address of the server to connect to.
+     * The port number will be the port that will be used to connect with.
+     * [BLANK]
+     * @param[in]     &address    A std::string ipaddress of a server to connect to.
+     * @param[in]     port    The port number to connect with.
+     */
+    void attach(const std::string &address, const int &port);
 
     /**
      * @brief Send data.
@@ -53,7 +85,7 @@ class Socket {
     /**
      * @brief Close the connection
      */
-    void close();
+    void terminate();
 };
 
 } // namespace LiveVideoFeed

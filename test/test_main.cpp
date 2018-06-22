@@ -5,6 +5,7 @@
 TEST_CASE("IPaddress check", "[Get IP address]") {
     LiveVideoFeed::UDPServer LVFserver("192.168.68.120", 26296);
     REQUIRE("192.168.68.120" == LVFserver.getAddress());
+    LVFserver.close();
 }
 
 TEST_CASE("Port check", "[Get port number]") {

@@ -9,7 +9,33 @@
 
 namespace LiveVideoFeed {
 
-Socket::Socket() {
+Socket::Socket(const int domain, const int type, const int protocol) : domain{domain}, type{type}, protocol{protocol} {
+    sockfd = socket(domain, type, protocol);
+    if (sockfd < 0) {
+        throw SockExceptionHandler("Failed to create socket");
+    }
+}
+
+void Socket::attach(const int &port) {
+    memset((char *)&socketSettings, 0, sizeof(socketSettings));
+    socketSettings.sin_family = AF_INET;
+    socketSettings.sin_addr.s_addr = htonl(INADDR_ANY);
+    socketSettings.sin_port = htons(port);
+
+    if (bind(sockfd, (struct sockaddr *)&socketSettings, sizeof(socketSettings)) < 0) {
+        throw SockExceptionHandler("Failed to attach socket properties");
+    }
+}
+
+void Socket::attach(const std::string &address, const int &port) {
+    inet_pton(AF_INET, address.c_str(), &(socketSettings.sin_addr)); // Convert ip string
+    memset((char *)&socketSettings, 0, sizeof(socketSettings));
+    socketSettings.sin_family = AF_INET;
+    socketSettings.sin_port = htons(port);
+
+    if (bind(sockfd, (struct sockaddr *)&socketSettings, sizeof(socketSettings)) < 0) {
+        throw SockExceptionHandler("Failed to attach socket properties");
+    }
 }
 
 void Socket::send(const char *data, size_t size) {
@@ -28,9 +54,10 @@ void Socket::receive(char *data, size_t max_size) {
 #endif
 }
 
-void Socket::close() {
+void Socket::terminate() {
 #ifdef __LINUX__
-// Code for linux implementation
+    // Code for linux implementation
+    close(sockfd);
 #elif defined __WINDOWS__
 // Code for windows implementation
 #endif
