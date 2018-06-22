@@ -54,9 +54,10 @@ void Socket::receive(char *data, size_t max_size) {
 #endif
 }
 
-void Socket::close() {
+void Socket::terminate() {
 #ifdef __LINUX__
-// Code for linux implementation
+    // Code for linux implementation
+    close(sockfd);
 #elif defined __WINDOWS__
 // Code for windows implementation
 #endif

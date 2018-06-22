@@ -27,6 +27,7 @@ std::string UDP::getAddress() {
 }
 
 void UDP::close() {
+    UDPsocket.terminate();
 }
 
 // CLIENT

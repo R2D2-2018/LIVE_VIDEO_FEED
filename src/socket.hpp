@@ -18,6 +18,7 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <unistd.h>
 
 #elif defined(_WIN32) || defined(__WIN32__) || defined(WIN32) || defined(_WIN64)
 #define __WINDOWS__
@@ -66,7 +67,7 @@ class Socket {
     /**
      * @brief Close the connection
      */
-    void close();
+    void terminate();
 };
 
 } // namespace LiveVideoFeed
