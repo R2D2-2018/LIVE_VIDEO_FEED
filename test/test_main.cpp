@@ -2,13 +2,17 @@
 #include "UDP.hpp"
 #include "catch.hpp"
 
-TEST_CASE("IPaddress check", "[Get IP address]") {
-    LiveVideoFeed::UDPServer LVFserver("192.168.68.120", 26296);
-    REQUIRE("192.168.68.120" == LVFserver.getAddress());
-    LVFserver.close();
+TEST_CASE("Server port check", "[Get port number]") {
+    LiveVideoFeed::UDPServer LVFserver(26296);
+    REQUIRE(26296 == LVFserver.getPort());
 }
 
-TEST_CASE("Port check", "[Get port number]") {
-    LiveVideoFeed::UDPServer LVFserver("192.168.68.120", 26296);
+TEST_CASE("Client IPAddress check", "[Get server IPAddress]") {
+    LiveVideoFeed::UDPServer LVFclient("127.0.0.1", 26296);
+    REQUIRE("127.0.0.1" == LVFserver.getAddress());
+}
+
+TEST_CASE("Client port check", "[Get port number]") {
+    LiveVideoFeed::UDPServer LVFclient("127.0.0.1", 26296);
     REQUIRE(26296 == LVFserver.getPort());
 }
