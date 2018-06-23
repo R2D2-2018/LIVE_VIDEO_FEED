@@ -29,7 +29,7 @@ void Socket::attach(const int &port) {
     }
 
 #elif defined __WINDOWS__
-    // Code for windows implementation
+// Code for windows implementation
 #endif
 }
 
@@ -42,7 +42,7 @@ void Socket::attach(const std::string &address, const int &port) {
     socketSettings.sin_port = htons(port);
 
 #elif defined __WINDOWS__
-    // Code for windows implementation
+// Code for windows implementation
 #endif
 }
 
@@ -61,6 +61,7 @@ void Socket::send(const char *data, size_t size) {
 int Socket::receive(char *data, size_t max_size) {
 #ifdef __LINUX__
     // Code for linux implementation
+    socklen_t remoteSocketSettingsLength = sizeof(remoteSocketSettings);
     return recvfrom(sockfd, data, max_size, 0, (struct sockaddr *)&remoteSocketSettings, &remoteSocketSettingsLength);
 
 #elif defined __WINDOWS__

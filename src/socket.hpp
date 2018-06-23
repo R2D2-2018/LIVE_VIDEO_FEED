@@ -31,7 +31,6 @@ class Socket {
     int domain, type, protocol;
     struct sockaddr_in socketSettings;
     struct sockaddr_in remoteSocketSettings;
-    socklen_t remoteSocketSettingsLength = sizeof(remoteSocketSettings);
 
   protected:
     int sockfd;
