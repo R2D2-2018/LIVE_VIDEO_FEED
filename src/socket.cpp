@@ -17,6 +17,8 @@ Socket::Socket(const int domain, const int type, const int protocol) : domain{do
 }
 
 void Socket::attach(const int &port) {
+#ifdef __LINUX__
+    // Code for linux implementation
     memset((char *)&socketSettings, 0, sizeof(socketSettings));
     socketSettings.sin_family = AF_INET;
     socketSettings.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -25,17 +27,23 @@ void Socket::attach(const int &port) {
     if (bind(sockfd, (struct sockaddr *)&socketSettings, sizeof(socketSettings)) < 0) {
         throw SockExceptionHandler("Failed to attach socket properties");
     }
+
+#elif defined __WINDOWS__
+    // Code for windows implementation
+#endif
 }
 
 void Socket::attach(const std::string &address, const int &port) {
+#ifdef __LINUX__
+    // Code for windows implementation
     inet_pton(AF_INET, address.c_str(), &(socketSettings.sin_addr)); // Convert ip string
     memset((char *)&socketSettings, 0, sizeof(socketSettings));
     socketSettings.sin_family = AF_INET;
     socketSettings.sin_port = htons(port);
 
-    // if (bind(sockfd, (struct sockaddr *)&socketSettings, sizeof(socketSettings)) < 0) {
-    //    throw SockExceptionHandler("Failed to attach socket properties");
-    //}
+#elif defined __WINDOWS__
+    // Code for windows implementation
+#endif
 }
 
 void Socket::send(const char *data, size_t size) {
