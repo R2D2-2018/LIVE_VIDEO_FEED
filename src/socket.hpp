@@ -30,6 +30,7 @@ class Socket {
   private:
     int domain, type, protocol;
     struct sockaddr_in socketSettings;
+    struct sockaddr_in remoteSocketSettings;
 
   protected:
     int sockfd;
@@ -80,7 +81,7 @@ class Socket {
      * @param[in]     *data    The array to store incomming data.
      * @param[in]     size    The size of the array.
      */
-    void receive(char *data, size_t max_size);
+    int receive(char *data, size_t max_size);
 
     /**
      * @brief Close the connection
