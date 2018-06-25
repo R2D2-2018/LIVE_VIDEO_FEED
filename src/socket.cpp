@@ -10,14 +10,26 @@
 namespace LiveVideoFeed {
 
 Socket::Socket(const int domain, const int type, const int protocol) : domain{domain}, type{type}, protocol{protocol} {
-    sockfd = socket(domain, type, protocol);
 #ifdef __LINUX__
+    sockfd = socket(domain, type, protocol);
     if (sockfd < 0) {
         throw SockExceptionHandler("Failed to create socket");
     }
 
 #elif defined __WINDOWS__
-// Code for windows implementation
+    // Code for windows implementation
+
+    // Initialize winsock
+    if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0) {
+        throw SockExceptionHandler("Failed to initialize winsock");
+    }
+
+    // Create socket
+    sockfd = socket(domain, type, protocol);
+    if (sockfd == INVALID_SOCKET) {
+        throw SockExceptionHandler("Failed to create socket");
+    }
+
 #endif
 }
 
