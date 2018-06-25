@@ -74,7 +74,7 @@ void Socket::attach(const std::string &address, const int &port) {
 #endif
 }
 
-void Socket::send(const char *data, size_t size) {
+void Socket::send(const char *data) {
     if (sendto(sockfd, data, strlen(data), 0, (struct sockaddr *)&socketSettings, sizeof(socketSettings)) < 0) {
         throw SockExceptionHandler("Failed to send message");
     }

@@ -18,7 +18,7 @@ TEST_CASE("Client port check", "[Get port number]") {
 }
 
 TEST_CASE("UDP communication check", "[Send and receive a message]") {
-    LVFclient.send("This is a test message.", 24);
+    LVFclient.send("This is a test message.");
     char data[24];
     LVFserver.receive(data, 24);
     std::string message(data);

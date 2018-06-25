@@ -76,7 +76,7 @@ class Socket {
      * @param[in]     *data    The array to send.
      * @param[in]     size    The size of the array.
      */
-    void send(const char *data, size_t size);
+    void send(const char *data);
 
     /**
      * @brief Receive data.

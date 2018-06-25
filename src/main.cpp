@@ -15,7 +15,7 @@ int main() {
         std::cout << "UDP Client sending to: " << LVFclient.getAddress() << " at port: " << LVFclient.getPort() << '\n';
 
         while (true) {
-            LVFclient.send("Message for testing Live Video Feed UDP transfer.\n", 51);
+            LVFclient.send("Message for testing Live Video Feed UDP transfer.\n");
             std::cout << "Message send.\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
