@@ -11,9 +11,14 @@ namespace LiveVideoFeed {
 
 Socket::Socket(const int domain, const int type, const int protocol) : domain{domain}, type{type}, protocol{protocol} {
     sockfd = socket(domain, type, protocol);
+#ifdef __LINUX__
     if (sockfd < 0) {
         throw SockExceptionHandler("Failed to create socket");
     }
+
+#elif defined __WINDOWS__
+// Code for windows implementation
+#endif
 }
 
 void Socket::attach(const int &port) {

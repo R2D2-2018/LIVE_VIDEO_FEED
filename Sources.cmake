@@ -4,6 +4,13 @@ add_compile_options(-fexceptions)
 
 link_libraries (gcc)
 
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    # Linux specific code
+    link_libraries(wsock32 ws2_32)
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+
+message(STATUS "We are on a ${CMAKE_SYSTEM_NAME} system")
+
 set (hwlib ${build_environment}/libraries/hwlib)
 include_directories (${hwlib}/library)
 

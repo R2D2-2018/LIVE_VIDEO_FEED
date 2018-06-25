@@ -33,7 +33,14 @@ class Socket {
     struct sockaddr_in remoteSocketSettings;
 
   protected:
+#ifdef __LINUX__
+    // Code for linux implementation
     int sockfd;
+#elif defined __WINDOWS__
+    // Code for windows implementation
+    SOCKET sockfd;
+    WSADATA wsa;
+#endif
 
   public:
     Socket(const int domain, const int type, const int protocol);
