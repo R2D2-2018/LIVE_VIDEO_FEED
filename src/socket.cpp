@@ -104,4 +104,9 @@ void Socket::terminate() {
     WSACleanup();
 #endif
 }
+
+Socket::~Socket() {
+    this->terminate();
+}
+
 } // namespace LiveVideoFeed

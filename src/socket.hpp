@@ -94,6 +94,8 @@ class Socket {
      * @brief Close the connection
      */
     void terminate();
+
+    ~Socket();
 };
 
 } // namespace LiveVideoFeed
