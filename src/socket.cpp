@@ -46,7 +46,14 @@ void Socket::attach(const int &port) {
     }
 
 #elif defined __WINDOWS__
-// Code for windows implementation
+    // Code for windows implementation
+    socketSettings.sin_family = AF_INET;
+    socketSettings.sin_addr.s_addr = INADDR_ANY;
+    socketSettings.sin_port = htons(port);
+
+    if (bind(sockfd, (struct sockaddr *)&socketSettings, sizeof(socketSettings)) == SOCKET_ERROR) {
+        throw SockExceptionHandler("Failed to attach socket properties");
+    }
 #endif
 }
 
@@ -59,7 +66,11 @@ void Socket::attach(const std::string &address, const int &port) {
     socketSettings.sin_port = htons(port);
 
 #elif defined __WINDOWS__
-// Code for windows implementation
+    // Code for windows implementation
+    memset((char *)&socketSettings, 0, sizeof(socketSettings));
+    socketSettings.sin_family = AF_INET;
+    socketSettings.sin_port = htons(port);
+    socketSettings.sin_addr.S_un.S_addr = inet_addr(address.c_str());
 #endif
 }
 
