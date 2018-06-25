@@ -54,7 +54,6 @@ class UDPClient : public UDP {
      * Call this function with a char array and the size of the array to send it over UDP.
      * [BLANK]
      * @param[in]     *data    The array to send.
-     * @param[in]     size    The size of the array.
      */
     void send(const char *data);
 };

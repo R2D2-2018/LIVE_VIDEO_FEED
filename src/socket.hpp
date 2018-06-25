@@ -74,7 +74,6 @@ class Socket {
      * The implementation of this function depends on the platform it was compiled on.
      * [BLANK]
      * @param[in]     *data    The array to send.
-     * @param[in]     size    The size of the array.
      */
     void send(const char *data);
 
