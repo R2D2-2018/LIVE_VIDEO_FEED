@@ -5,8 +5,8 @@
  * @license See LICENSE
  */
 
-#ifndef SOCKET
-#define SOCKET
+#ifndef SOCKET_HH
+#define SOCKET_HH
 #include "sock_exception_handler.hpp"
 #include <cstring>
 #include <iostream>
@@ -98,4 +98,4 @@ class Socket {
 
 } // namespace LiveVideoFeed
 
-#endif // SOCKET
+#endif // SOCKET_HH
