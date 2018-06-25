@@ -75,15 +75,9 @@ void Socket::attach(const std::string &address, const int &port) {
 }
 
 void Socket::send(const char *data, size_t size) {
-#ifdef __LINUX__
-    // Code for linux implementation
     if (sendto(sockfd, data, strlen(data), 0, (struct sockaddr *)&socketSettings, sizeof(socketSettings)) < 0) {
         throw SockExceptionHandler("Failed to send message");
     }
-
-#elif defined __WINDOWS__
-// Code for windows implementation
-#endif
 }
 
 int Socket::receive(char *data, size_t max_size) {
@@ -93,7 +87,9 @@ int Socket::receive(char *data, size_t max_size) {
     return recvfrom(sockfd, data, max_size, 0, (struct sockaddr *)&remoteSocketSettings, &remoteSocketSettingsLength);
 
 #elif defined __WINDOWS__
-
+    // Code for linux implementation
+    int remoteSocketSettingsLength = sizeof(remoteSocketSettings);
+    return recvfrom(sockfd, data, max_size, 0, (struct sockaddr *)&remoteSocketSettings, &remoteSocketSettingsLength);
 #endif
 }
 
@@ -103,7 +99,9 @@ void Socket::terminate() {
     close(sockfd);
 
 #elif defined __WINDOWS__
-// Code for windows implementation
+    // Code for windows implementation
+    closesocket(sockfd);
+    WSACleanup();
 #endif
 }
 } // namespace LiveVideoFeed
