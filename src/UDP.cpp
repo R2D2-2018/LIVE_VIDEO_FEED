@@ -34,8 +34,8 @@ void UDP::close() {
 UDPClient::UDPClient(const std::string &address, const int &port) : UDP(address, port) {
 }
 
-void UDPClient::send(const char *data, size_t size) {
-    UDPsocket.send(data, size);
+void UDPClient::send(const char *data) {
+    UDPsocket.send(data);
 }
 
 // SERVER

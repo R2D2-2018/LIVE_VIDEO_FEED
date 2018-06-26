@@ -5,8 +5,8 @@
  * @license See LICENSE
  */
 
-#ifndef SOCKET
-#define SOCKET
+#ifndef SOCKET_HH
+#define SOCKET_HH
 #include "sock_exception_handler.hpp"
 #include <cstring>
 #include <iostream>
@@ -33,7 +33,14 @@ class Socket {
     struct sockaddr_in remoteSocketSettings;
 
   protected:
+#ifdef __LINUX__
+    // Code for linux implementation
     int sockfd;
+#elif defined __WINDOWS__
+    // Code for windows implementation
+    SOCKET sockfd;
+    WSADATA wsa;
+#endif
 
   public:
     Socket(const int domain, const int type, const int protocol);
@@ -67,9 +74,8 @@ class Socket {
      * The implementation of this function depends on the platform it was compiled on.
      * [BLANK]
      * @param[in]     *data    The array to send.
-     * @param[in]     size    The size of the array.
      */
-    void send(const char *data, size_t size);
+    void send(const char *data);
 
     /**
      * @brief Receive data.
@@ -87,8 +93,10 @@ class Socket {
      * @brief Close the connection
      */
     void terminate();
+
+    ~Socket();
 };
 
 } // namespace LiveVideoFeed
 
-#endif // SOCKET
+#endif // SOCKET_HH
