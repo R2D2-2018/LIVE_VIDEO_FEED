@@ -21,17 +21,17 @@ class UDP {
 
   public:
     /**
-     * @brief Construcotr for the UDP client/server base class.
+     * @brief Constructor for the UDP client/server base class.
      *
-     * @param[in]    &port    The port the UDP client/server will use.
+     * @param[in]    port    The port the UDP client/server will use.
      */
     UDP(int port);
 
     /**
-     * @brief Construcotr for the UDP client/server base class.
+     * @brief Constructor for the UDP client/server base class.
      *
      * @param[in]    address  The ip adress the UDP client/server will use.
-     * @param[in]    &port    The port the UDP client/server will use.
+     * @param[in]    port    The port the UDP client/server will use.
      */
 
     UDP(std::string address, int port);
@@ -46,7 +46,7 @@ class UDP {
     /**
      * @brief Returns the current set ip address.
      *
-     * @return std::string with the address.
+     * @return char* with the address.
      */
     const char *getAddress() const;
 
@@ -62,7 +62,7 @@ class UDPClient : public UDP {
      * @brief Constructor for a UDP client
      *
      * @param[in]     &address    The ip adress the UDP Client will use.
-     * @param[in]     &port       The port the UDP Client will use.
+     * @param[in]     port       The port the UDP Client will use.
      */
     UDPClient(const std::string &address, int port);
 
@@ -82,7 +82,6 @@ class UDPServer : public UDP {
      * @brief Constructor for a UDP Server
      *
      * @param[in]     port    The port the UDP Server will use.
-     * @return What will the function return
      */
     UDPServer(int port);
 
