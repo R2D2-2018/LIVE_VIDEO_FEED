@@ -10,11 +10,11 @@
 namespace LiveVideoFeed {
 
 // UDP Superclass
-UDP::UDP(const int &port) : UDPsocket{Socket(AF_INET, SOCK_DGRAM, 0)}, port{port} {
+UDP::UDP(int port) : UDPsocket{Socket(AF_INET, SOCK_DGRAM, 0)}, port{port} {
     UDPsocket.attach(port);
 }
 
-UDP::UDP(const std::string address, const int &port) : UDPsocket{Socket(AF_INET, SOCK_DGRAM, 0)}, ipaddress{address}, port{port} {
+UDP::UDP(const std::string address, int port) : UDPsocket{Socket(AF_INET, SOCK_DGRAM, 0)}, ipaddress{address}, port{port} {
     UDPsocket.attach(address, port);
 }
 
@@ -22,8 +22,8 @@ int UDP::getPort() const {
     return port;
 }
 
-std::string UDP::getAddress() const {
-    return std::string(ipaddress);
+const char *UDP::getAddress() const {
+    return ipaddress.c_str();
 }
 
 void UDP::close() {
@@ -31,7 +31,7 @@ void UDP::close() {
 }
 
 // CLIENT
-UDPClient::UDPClient(const std::string &address, const int &port) : UDP(address, port) {
+UDPClient::UDPClient(const std::string &address, int port) : UDP(address, port) {
 }
 
 void UDPClient::send(const char *data) {
@@ -39,7 +39,7 @@ void UDPClient::send(const char *data) {
 }
 
 // SERVER
-UDPServer::UDPServer(const int &port) : UDP(port) {
+UDPServer::UDPServer(int port) : UDP(port) {
 }
 
 int UDPServer::receive(char *data, size_t max_size) {

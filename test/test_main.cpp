@@ -10,7 +10,8 @@ TEST_CASE("Server port check", "[Get port number]") {
 }
 
 TEST_CASE("Client IPAddress check", "[Get server IPAddress]") {
-    REQUIRE("127.0.0.1" == LVFclient.getAddress());
+    std::string string(LVFclient.getAddress());
+    REQUIRE("127.0.0.1" == string);
 }
 
 TEST_CASE("Client port check", "[Get port number]") {

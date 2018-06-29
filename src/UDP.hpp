@@ -20,23 +20,35 @@ class UDP {
     int port;
 
   public:
-    UDP(const int &port);
+    /**
+     * @brief Construcotr for the UDP client/server base class.
+     *
+     * @param[in]    &port    The port the UDP client/server will use.
+     */
+    UDP(int port);
 
-    UDP(std::string address, const int &port);
+    /**
+     * @brief Construcotr for the UDP client/server base class.
+     *
+     * @param[in]    address  The ip adress the UDP client/server will use.
+     * @param[in]    &port    The port the UDP client/server will use.
+     */
+
+    UDP(std::string address, int port);
 
     /**
      * @brief Returns the current set port number.
-     * [BLANK]
+     *
      * @return Integer with the port number.
      */
     int getPort() const;
 
     /**
-     * @brief Returns the current sset ip address.
-     * [BLANK]
+     * @brief Returns the current set ip address.
+     *
      * @return std::string with the address.
      */
-    std::string getAddress() const;
+    const char *getAddress() const;
 
     /**
      * @brief Close the connection
@@ -46,13 +58,19 @@ class UDP {
 
 class UDPClient : public UDP {
   public:
-    UDPClient(const std::string &address, const int &port);
+    /**
+     * @brief Constructor for a UDP client
+     *
+     * @param[in]     &address    The ip adress the UDP Client will use.
+     * @param[in]     &port       The port the UDP Client will use.
+     */
+    UDPClient(const std::string &address, int port);
 
     /**
      * @brief Send data.
-     * [BLANK]
+     *
      * Call this function with a char array and the size of the array to send it over UDP.
-     * [BLANK]
+     *
      * @param[in]     *data    The array to send.
      */
     void send(const char *data);
@@ -60,14 +78,20 @@ class UDPClient : public UDP {
 
 class UDPServer : public UDP {
   public:
-    UDPServer(const int &port);
+    /**
+     * @brief Constructor for a UDP Server
+     *
+     * @param[in]     port    The port the UDP Server will use.
+     * @return What will the function return
+     */
+    UDPServer(int port);
 
     /**
      * @brief Receive data.
-     * [BLANK]
+     *
      * Call this function to receive incomming data. Supply this function with an char array to store the incomming data.
      * Also specify the maximum length of the array.
-     * [BLANK]
+     *
      * @param[in]     *data    The array to store incomming data.
      * @param[in]     size    The size of the array.
      */

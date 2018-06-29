@@ -47,21 +47,21 @@ class Socket {
 
     /**
      * @brief Attach a port to socket.
-     * [BLANK]
+     *
      * This function will bind the necessary properties to a socket for use as a server.
      * Only supply this function with a port to listen on.
-     * [BLANK]
+     *
      * @param[in]     port    The port number to connect with.
      */
     void attach(const int &port);
 
     /**
      * @brief Attach address and port to socket.
-     * [BLANK]
+     *
      * This function will bind the necessary properties to a socket for use as a client.
      * The address will hold the ip address of the server to connect to.
      * The port number will be the port that will be used to connect with.
-     * [BLANK]
+     *
      * @param[in]     &address    A std::string ipaddress of a server to connect to.
      * @param[in]     port    The port number to connect with.
      */
@@ -69,21 +69,21 @@ class Socket {
 
     /**
      * @brief Send data.
-     * [BLANK]
+     *
      * Call this function with a char array and the size of the array to send it over UDP.
      * The implementation of this function depends on the platform it was compiled on.
-     * [BLANK]
+     *
      * @param[in]     *data    The array to send.
      */
     void send(const char *data);
 
     /**
      * @brief Receive data.
-     * [BLANK]
+     *
      * Call this function to receive incomming data. Supply this function with an char array to store the incomming data.
      * Also specify the maximum length of the array.
      * The implementation of this function depends on the platform it was compiled on.
-     * [BLANK]
+     *
      * @param[in]     *data    The array to store incomming data.
      * @param[in]     size    The size of the array.
      */

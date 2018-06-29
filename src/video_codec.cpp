@@ -2,7 +2,7 @@
 #include <iostream>
 LiveVideoFeed::videoCodec::videoCodec(const std::string &code) {
     if (code.length() == 4) {
-        codeID = code;
+        codeID = std::copy(code);
         fourcc = ((uint32_t)(((code[3]) << 24) | ((code[2]) << 16) | ((code[1]) << 8) | (code[0])));
     }
 }

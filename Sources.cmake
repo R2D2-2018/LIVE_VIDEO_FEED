@@ -5,7 +5,7 @@ add_compile_options(-fexceptions)
 link_libraries (gcc)
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    # Linux specific code
+    # Windows specific code
     link_libraries(wsock32 ws2_32)
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
@@ -21,8 +21,6 @@ include_directories (${catch}/single_include)
 
 set (sources
     src/sock_exception_handler.cpp
-    #src/video_codec.cpp
     src/socket.cpp
     src/UDP.cpp
-    # place your .cpp's here "src/some_file.cpp"
 )
